@@ -1,0 +1,18 @@
+settings:
+  application:
+    host: 127.0.0.1
+    port: 8888
+    apiVersion: /api/v1
+    timeOut: 60
+  mysql:
+    dbType: mysql
+    host: 127.0.0.1
+    dbName: rudder
+    password: admin
+    port: 3306
+    username: root
+    charSet: utf8mb4
+  gorm:
+    maxIdleConn: 3
+    maxOpenConn: 2000
+    logLevel: info         # info|warn|error|silent
