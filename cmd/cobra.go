@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"RudderMaster/cmd/database"
 	"RudderMaster/cmd/server"
 	"errors"
 	"fmt"
@@ -26,6 +27,7 @@ var rootCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(server.StartCmd)
+	rootCmd.AddCommand(database.SyncDBCmd)
 }
 
 func Execute() {

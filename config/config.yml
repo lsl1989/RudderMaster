@@ -3,8 +3,11 @@ settings:
     host: 127.0.0.1
     port: 8888
     apiVersion: /api/v1
-    timeOut: 60,
+    timeOut: 60
     secret: AqzeA#w*FQte_kqYPtFNZOR&fFVuYIPe
+    secretExpire: 86400
+    PageSize: 10
+    PageMaxSize: 1000
   mysql:
     dbType: mysql
     host: 127.0.0.1

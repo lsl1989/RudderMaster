@@ -2,10 +2,14 @@ package settings
 
 type config struct {
 	Application struct {
-		Host       string
-		Port       string
-		ApiVersion string
-		TimeOut    int
+		Host         string
+		Port         string
+		ApiVersion   string
+		TimeOut      int
+		Secret       string
+		SecretExpire int
+		PageSize     int
+		PageMaxSize  int
 	}
 	Mysql struct {
 		DbType   string

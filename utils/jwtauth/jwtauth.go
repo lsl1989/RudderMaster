@@ -1,7 +1,7 @@
 package jwtauth
 
 import (
-	"fmt"
+	"RudderMaster/settings"
 	"github.com/golang-jwt/jwt/v5"
 	"time"
 )
@@ -12,23 +12,23 @@ type JwtCustomClaims struct {
 	jwt.RegisteredClaims
 }
 
-func GenerateToken() {
-	now := time.Now()
-	end := now.Add(time.Duration(60) * time.Second)
-
-	claims := JwtCustomClaims{
-		Username: "xiaojia",
-		UserId:   11011,
-		RegisteredClaims: jwt.RegisteredClaims{
-			Issuer:    "test",
-			IssuedAt:  jwt.NewNumericDate(now),
-			ExpiresAt: jwt.NewNumericDate(end),
-		},
-	}
-	mySigningKey := []byte("AllYourBase")
+func GenerateToken(claims *JwtCustomClaims) (tokenStr string, err error) {
+	appConf := settings.Config.Application
+	//now := time.Now()
+	//end := now.Add(time.Duration(appConf.SecretExpire) * time.Second)
+	//claims := JwtCustomClaims{
+	//	Username: "xiaojia",
+	//	UserId:   11011,
+	//	RegisteredClaims: jwt.RegisteredClaims{
+	//		Issuer:    "test",
+	//		IssuedAt:  jwt.NewNumericDate(now),
+	//		ExpiresAt: jwt.NewNumericDate(end),
+	//	},
+	//}
+	mySigningKey := []byte(appConf.Secret)
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-	ss, err := token.SignedString(mySigningKey)
-	fmt.Printf("token: %v, err: %v", ss, err)
+	tokenStr, err = token.SignedString(mySigningKey)
+	return
 }
 
 func ValidToken(tokenStr string) (*JwtCustomClaims, error) {
