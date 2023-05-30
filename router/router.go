@@ -1,6 +1,9 @@
 package router
 
-import "github.com/gin-gonic/gin"
+import (
+	"RudderMaster/apis/auth"
+	"github.com/gin-gonic/gin"
+)
 
 func InitRouter() *gin.Engine {
 	r := gin.Default()
@@ -11,6 +14,8 @@ func InitRouter() *gin.Engine {
 func registerRouter(r *gin.Engine) {
 	// 健康检查
 	health(r)
+	// 登录
+	r.POST("/login", auth.Login)
 }
 
 func health(r *gin.Engine) {

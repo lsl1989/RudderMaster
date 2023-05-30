@@ -7,7 +7,7 @@ import (
 	"reflect"
 )
 
-// 将json的字符串转为map
+// JsonString2Map - 将json的字符串转为map
 func JsonString2Map(str string) (map[string]interface{}, error) {
 	mapData := make(map[string]interface{})
 	if str == "" {
@@ -19,7 +19,7 @@ func JsonString2Map(str string) (map[string]interface{}, error) {
 	return mapData, nil
 }
 
-// 数值类型转整数的字符串
+// Number2String - 数值类型转整数的字符串
 func Number2String(val interface{}) string {
 	switch val.(type) {
 	case float64, float32:
@@ -32,6 +32,7 @@ func Number2String(val interface{}) string {
 	return ""
 }
 
+// Struct2Map - 结构体转map key tag名称 value 对应字段值
 func Struct2Map(in interface{}, tagName string) (map[string]interface{}, error) {
 	out := make(map[string]interface{})
 

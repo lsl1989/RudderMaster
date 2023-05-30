@@ -4,7 +4,7 @@ import (
 	"RudderMaster/database"
 	"RudderMaster/router"
 	"RudderMaster/settings"
-	"RudderMaster/utils/logger"
+	"RudderMaster/utils/mlog"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/cobra"
@@ -49,7 +49,7 @@ func run() error {
 		sqlDb, _ := database.DB.DB()
 		err := sqlDb.Close()
 		if err != nil {
-			logger.Error(err)
+			mlog.Error(err)
 		}
 	}()
 
