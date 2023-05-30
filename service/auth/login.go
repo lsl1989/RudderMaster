@@ -3,13 +3,13 @@ package auth
 import (
 	formAuth "RudderMaster/forms/auth"
 	modelAuth "RudderMaster/models/auth"
-	"RudderMaster/service/svc"
+	svc2 "RudderMaster/service/base"
 	"RudderMaster/utils/encryption"
 	"errors"
 )
 
 func LoginCheck(formData *formAuth.LoginForm) (*modelAuth.User, error) {
-	svc := svc.NewSvc()
+	svc := svc2.NewSvc()
 	userData, err := svc.FindOne("auth_user", "username", formData.Username, modelAuth.User{})
 	if err != nil {
 		return nil, err
