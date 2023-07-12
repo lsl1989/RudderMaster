@@ -2,6 +2,7 @@ package database
 
 import (
 	"RudderMaster/database"
+	modelAuth "RudderMaster/models/auth"
 	"fmt"
 	"github.com/spf13/cobra"
 )
@@ -40,5 +41,14 @@ func createUser() {
 			fmt.Println(err)
 		}
 	}()
-	fmt.Println("to Create User!")
+	user := modelAuth.User{
+		Username: username,
+		Password: password,
+		Name:     username,
+		CreateBy: "system",
+	}
+	if err := database.DB.Create(&user).Error; err != nil {
+		fmt.Println("创建用户失败")
+	}
+	fmt.Printf("创建用户 %s 成功\n", username)
 }

@@ -2,7 +2,7 @@ package auth
 
 type LoginForm struct {
 	Username string `json:"username" form:"username" binding:"required,min=2,max=32"`
-	Password string `json:"password" form:"password" binding:"required,min=8,max=128"`
+	Password string `json:"password" form:"password" binding:"required,min=5,max=128"`
 }
 
 type LoginUserForm struct {

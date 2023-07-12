@@ -18,7 +18,7 @@ func NewClaims(user *auth.User) *JwtCustomClaims {
 	now := time.Now()
 	end := now.Add(time.Duration(settings.Config.Application.SecretExpire) * time.Second)
 	return &JwtCustomClaims{
-		Username: user.UserName,
+		Username: user.Username,
 		UserId:   user.ID,
 		RoleId:   user.RoleId,
 		RegisteredClaims: jwt.RegisteredClaims{

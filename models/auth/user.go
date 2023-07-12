@@ -9,13 +9,14 @@ import (
 
 type User struct {
 	gorm.Model
-	UserName string `gorm:"type:varchar(32);comment:用户名(唯一);unique" json:"username"`
+	Username string `gorm:"type:varchar(32);comment:用户名(唯一);unique" json:"username"`
 	Password string `gorm:"type:varchar(128);not null;comment:密码" json:"password"`
 	Name     string `gorm:"type:varchar(16);comment:中文名;not null" json:"name"`
 	Avatar   string `gorm:"type:varchar(256);comment:头像" json:"avatar"`
 	RoleId   uint   `gorm:"default:0;comment:角色ID" json:"role_id"`
 	DepId    uint   `gorm:"default:0;comment:部门ID" json:"dep_id"`
 	CreateBy string `gorm:"type:varchar(32);comment:创建人" json:"create_by"`
+	IsAdmin  bool   `gorm:"default:false;comment:管理员" json:"is_admin"`
 }
 
 func (User) TableName() string {

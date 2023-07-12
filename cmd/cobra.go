@@ -28,6 +28,7 @@ var rootCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(server.StartCmd)
 	rootCmd.AddCommand(database.SyncDBCmd)
+	rootCmd.AddCommand(database.CreateUserCmd)
 }
 
 func Execute() {
