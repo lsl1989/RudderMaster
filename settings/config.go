@@ -25,4 +25,7 @@ type config struct {
 		MaxOpenConn int
 		MaxIdleConn int
 	}
+	K8s struct {
+		ConfPath string
+	}
 }

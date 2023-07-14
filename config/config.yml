@@ -20,3 +20,5 @@ settings:
     maxIdleConn: 3
     maxOpenConn: 2000
     logLevel: info         # info|warn|error|silent
+  k8s:
+    confPath: "~/.kube/config"
