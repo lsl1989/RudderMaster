@@ -4,6 +4,7 @@ import (
 	"RudderMaster/database"
 	"RudderMaster/utils/tools"
 	"fmt"
+	"github.com/pkg/errors"
 	"gorm.io/gorm"
 	"reflect"
 )
@@ -72,6 +73,28 @@ func (s *DBService) Pagination(m interface{}, size, page int, search map[string]
 	} else {
 		if err = query.Find(&data).Error; err != nil {
 			return nil, 0, err
+		}
+	}
+	return data, total, nil
+}
+
+func (d *DBService) PaginationWithQuery(m interface{}, query *gorm.DB, size, page int) (interface{}, int64, error) {
+	var total int64
+	var err error
+	modelType := reflect.TypeOf(m)
+	limit := tools.GetPageSize(size)
+	offset := tools.GetPageNum(page, limit)
+	data := reflect.New(reflect.SliceOf(modelType)).Elem().Interface()
+	if err = query.Count(&total).Error; err != nil {
+		return nil, 0, errors.WithStack(err)
+	}
+	if size > 0 {
+		if err = query.Limit(limit).Offset(offset).Find(&data).Error; err != nil {
+			return nil, 0, errors.WithStack(err)
+		}
+	} else {
+		if err = query.Find(&data).Error; err != nil {
+			return nil, 0, errors.WithStack(err)
 		}
 	}
 	return data, total, nil

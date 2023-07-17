@@ -7,6 +7,7 @@ type UserForm struct {
 	RoleId   uint   `json:"role_id" form:"role_id" binding:"required"`
 	DepId    uint   `json:"dep_id" form:"dep_id"`
 	CreateBy string `json:"create_by" form:"create_by"`
+	IsAdmin  bool   `json:"is_admin" form:"is_admin"`
 }
 
 type UserDetailForm struct {

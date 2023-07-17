@@ -40,7 +40,7 @@ func GenerateToken(user *auth.User) (tokenStr string, err error) {
 func ValidToken(tokenStr string) (*JwtCustomClaims, error) {
 
 	token, err := jwt.ParseWithClaims(tokenStr, &JwtCustomClaims{}, func(token *jwt.Token) (interface{}, error) {
-		return []byte("AllYourBase"), nil
+		return []byte(settings.Config.Application.Secret), nil
 	}, jwt.WithLeeway(10*time.Second))
 
 	if claims, ok := token.Claims.(*JwtCustomClaims); ok && token.Valid {

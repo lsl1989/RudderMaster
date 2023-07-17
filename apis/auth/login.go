@@ -24,5 +24,5 @@ func Login(ctx *gin.Context) {
 		ctx.JSON(http.StatusOK, gin.H{"code": 5000, "message": "系统错误，token生成失败!"})
 		return
 	}
-	ctx.JSON(http.StatusOK, gin.H{"code": 2000, "message": "登录成功", "token": token})
+	ctx.JSON(http.StatusOK, gin.H{"code": 2001, "message": "登录成功", "token": token})
 }
